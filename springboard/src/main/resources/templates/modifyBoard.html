@@ -55,7 +55,7 @@
 			
 								<label for="boardContent">내용</label>
 								<!--<textarea th:value="${b.boardContent}" class="form-control" name="boardNo" ></textarea> -->
-								<textarea th:value="${b.boardContent}" th:inline="text" class="form-control" rows="3"  name="boardContent" id="boardContent">[[*{b.boardContent}]]</textarea>
+								<textarea th:value="${b.boardContent}" th:inline="text" class="form-control" rows="3"  name="boardContent" id="boardContent" >[[*{b.boardContent}]]</textarea>
 							</div>
 					
 							<div class="mb-3">
@@ -75,7 +75,7 @@
 							</div>
 					
 							<td>
-								<input type="submit" id="submit" value="수정하기">
+								<input class="btn btn-primary" type="submit" id="submit" value="수정하기">
 							</td>
 						</tr> 	
 					</table>
@@ -83,4 +83,4 @@
 		</article>
 	</body> 
 </html>
-<a th:href="@{/boardList(currentPage=${currentPage})}">리스트로 돌아가기</a>
+<a th:href="@{/boardList(currentPage=${currentPage})}">[리스트로 돌아가기]</a>

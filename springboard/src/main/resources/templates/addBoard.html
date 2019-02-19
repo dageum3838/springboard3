@@ -49,18 +49,18 @@
 	<h1>AddBoard</h1>
 	<form action="/addBoard" id="addBoard" method="post">
 	  	<label class="control-label">제목</label>
-	    	<input type="text" name="boardTitle" id="boardTitle" class="form-control"/>
+	    	<input type="text" name="boardTitle" id="boardTitle" class="form-control" placeholder="제목을 입력해 주세요"/>
 	    
 	    <label class="control-label">내용</label>
-	    	<textarea name="boardContent" id="boardContent" class="form-control"/></textarea>
-	    <label class="control-label">등록자</label>
-	    	<input type="text" name="boardUser" id="boardUser" class="form-control"/>
+	    	<textarea name="boardContent" id="boardContent" class="form-control" placeholder="내용을 입력해 주세요"></textarea>
+	    <label class="control-label">작성자</label>
+	    	<input type="text" name="boardUser" id="boardUser" class="form-control" placeholder="작성자를 입력해 주세요">
 	  
 	    <label class="control-label">비밀번호</label>
-			<input type="text" name="boardPw" id="boardPw" class="form-control"/>
+			<input type="text" name="boardPw" id="boardPw" class="form-control" placeholder="비밀번호를 입력해 주세요">
 		<br>
 
-		<input type="submit" id="submit" value="등록"/>
+		<input class="btn btn-primary" type="submit" id="submit" value="등록"/>
 	</form>
 <br>
-<a th:href="@{/boardList(currentPage=${currentPage})}">리스트로 돌아가기</a>
+<a th:href="@{/boardList(currentPage=${currentPage})}">[리스트로 돌아가기]</a>

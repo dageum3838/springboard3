@@ -48,9 +48,10 @@
 						<th:input th:text="${list.boardDate}" type="text" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요">
 					</div>
 	
-						<a th:href="@{/modifyBoard(boardNo=${list.boardNo}, currentPage=${currentPage})}">수정</a>
-						<a th:href="@{/removeBoard(boardNo=${list.boardNo}, currentPage=${currentPage})}">삭제</a>
-						<a th:href="@{/boardList(currentPage=${currentPage})}">리스트로 돌아가기</a>
+						<a class="btn btn-primary" th:href="@{/modifyBoard(boardNo=${list.boardNo}, currentPage=${currentPage})}">수정</a>
+						<a class="btn btn-primary" th:href="@{/removeBoard(boardNo=${list.boardNo}, currentPage=${currentPage})}">삭제</a>
+						<br><br>
+						<a th:href="@{/boardList(currentPage=${currentPage})}">[리스트로 돌아가기]</a>
 					</form>
 			</div>
 		</article>
