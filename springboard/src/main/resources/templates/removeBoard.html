@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<title>글 삭제 화면</title>
+<meta charset="UTF-8">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<!-- 너무 상단에 붙어 있으므로 조금 떨어 트리기 위해  -->
+<style>
+	body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+	}
+</style>
+
+<script>
+		console.log("글 삭제 화면");
+		// 유효성 검사 완료
+		$(document).ready(function(){
+	        $('#submit').click(function(){
+	        	$('#removeBoard').submit(function(event){
+	        		if($('#boardPw').val().length<1){
+		            	$('#boardPw').attr('placeholder','비밀번호를 정확히 입력해주세요.');
+		            	$('#boardPw').focus();
+		            	return false;
+	        		}
+	        	});
+	        });
+	    });
+	</script>
+</head>
+<body>
+	<div class="container" role="main">
+	<h1>RemoveBoard</h1>
+		<form action="/removeBoard" id="removeBoard" method="post">
+		<table border="1">
+			<tr th:each="b : ${board}">
+				<div class="mb-3">
+					<label for="boardNo">No</label>
+					<input th:value="${b.boardNo}" type="text" class="form-control" name="boardNo" id="boardNo" readonly>
+				</div>
+				
+				<div class="mb-3">
+					<label for="boardPw">Pw</label>
+					<input type="text" class="form-control" name="boardPw" id="boardPw" >
+				</div>
+				
+				<td>
+					<input id="submit" type="submit" value="삭제하기">
+				</td>
+			</tr>	
+		</table>
+	</form>
+</body>
+</html>

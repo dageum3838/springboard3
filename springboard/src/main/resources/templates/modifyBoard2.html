@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- jQuery -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<title>글 삭제화면</title>
+<!-- 너무 상단에 붙어 있으므로 조금 떨어 트리기 위해  -->
+<style>
+
+body {
+
+padding-top: 70px;
+
+padding-bottom: 30px;
+
+}
+
+</style>
+</head>
+<body>
+	<article>
+		<div class="container" role="main">	
+			<h1>ModifyBoard</h1>
+				<form name="form" id="form" role="form" method="post" action="/modifyBoard">
+					<table border=1>
+						<tr th:each="b : ${board}">
+				<div class="mb-3">
+		
+					<label for="boardNo">No</label>
+					<input th:value="${b.boardNo}" type="text" class="form-control" name="boardNo" readonly>
+
+				</div>
+				
+				<div class="mb-3">
+		
+					<label for="boardNo">제목</label>
+					<input th:value="${b.boardTitle}" type="text" class="form-control" name="boardNo" >
+
+				</div>
+				
+				<div class="mb-3">
+		
+					<label for="boardContent">내용</label>
+				<!--<textarea th:value="${b.boardContent}" class="form-control" name="boardNo" ></textarea> -->
+					<textarea th:inline="text" class="form-control" rows="3" >[[*{b.boardContent}]]</textarea>
+				</div>
+				
+				<div class="mb-3">
+		
+					<label for="boardUser">내용</label>
+					<input th:value="${b.boardUser}" type="text" class="form-control" name="boardUser" >
+
+				</div>
+				
+				<div class="mb-3">
+		
+					<label for="boardDate">날짜</label>
+					<input th:value="${b.boardDate}" type="text" class="form-control" name="boardDate" >
+
+				</div>
+				
+	
+				
+				
+				
+							<td>번호 :<input th:value="${b.boardNo}" type="text" name="boardNo"  readonly></td> 
+							<td>제목 : <input th:value="${b.boardTitle}" type="text" name="boardTitle" ></td>
+							<td>내용 : <input th:value="${b.boardContent}" type="text" name="boardContent" ></td>
+							<td>글쓴이 : <input th:value="${b.boardUser}" type="text" name="boardUser" readonly></td>
+							<td>날짜 : <input th:value="${b.boardDate}" type="text" name="boardDate" readonly></td>
+							<td><input type="submit" value="수정하기"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+	</article>
+	 
+</body> 
+</html>

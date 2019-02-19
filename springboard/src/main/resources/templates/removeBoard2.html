@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- jQuery -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<title>글 삭제화면</title>
+<!-- 너무 상단에 붙어 있으므로 조금 떨어 트리기 위해  -->
+<style>
+
+body {
+
+padding-top: 70px;
+
+padding-bottom: 30px;
+
+}
+
+</style>
+</head>
+<body>
+	<div class="container" role="main">
+	<h2>removeBoard</h2>
+	<form action="/removeBoard" method="post">
+		<table border="1">
+		<tr th:each="b : ${board}">
+				<div class="mb-3">
+
+					<label for="boardNo">No</label>
+
+					<th:input th:text="${b.boardNo}" type="text" class="form-control" name="boardNo" id="boardNo" readonly>
+
+				</div>
+				<div class="mb-3">
+
+					<label for="boardPw">No</label>
+
+					<input type="text" class="form-control" name="boardPw" id="boardPw" >
+
+				</div>
+		
+				<td><input type="submit" value="삭제하기"></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

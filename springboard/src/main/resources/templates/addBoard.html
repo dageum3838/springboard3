@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<title>글 등록 화면</title>
+<meta charset="UTF-8">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<!-- 너무 상단에 붙어 있으므로 조금 떨어 트리기 위해  -->
+<style>
+	body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+	}
+</style>
+
+<script>
+	console.log("글 등록 화면");
+		// 유효성 검사 완료
+		$(document).ready(function(){
+			$('#submit').click(function(){
+				$('#addBoard').submit(function(event){
+					if($('#boardTitle').val().length<1){
+						$('#boardTitle').attr('placeholder','제목을 입력해 주세요');
+						$('#boardTitle').focus();
+						return false;
+					}else if($('#boardContent').val().length<1){
+						$('#boardContent').attr('placeholder','내용을 입력해 주세요.');
+						$('#boardContent').focus();
+						return false;
+					}else if($('#boardUser').val().length<1){
+						$('#boardUser').attr('placeholder','작성자를 입력해 주세요.');
+						$('#boardUser').focus();
+						return false;
+					}else if($('#boardPw').val().length<1)	{
+						$('#boardPw').attr('placeholder','비밀번호를 입력해 주세요.');
+						$('#boardPw').focus();
+						return false;
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container form-group">
+	<h1>AddBoard</h1>
+	<form action="/addBoard" id="addBoard" method="post">
+	  	<label class="control-label">제목</label>
+	    	<input type="text" name="boardTitle" id="boardTitle" class="form-control"/>
+	    
+	    <label class="control-label">내용</label>
+	    	<textarea name="boardContent" id="boardContent" class="form-control"/></textarea>
+	    
+	    <label class="control-label">등록자</label>
+	    	<input type="text" name="boardUser" id="boardUser" class="form-control"/>
+	  
+	    <label class="control-label">비밀번호</label>
+			<input type="text" name="boardPw" id="boardPw" class="form-control"/>
+		<br>
+
+		<input type="submit" id="submit" value="등록"/>
+	</form>
+<br>
+<a th:href="@{/boardList(currentPage=${currentPage})}">리스트로 돌아가기</a>

@@ -1,0 +1,64 @@
+<head>
+<title>상세 화면</title>
+<meta charset="UTF-8">
+<!-- jQuery -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<title>글 삭제화면</title>
+<!-- 너무 상단에 붙어 있으므로 조금 떨어 트리기 위해  -->
+<style>
+
+body {
+
+padding-top: 70px;
+
+padding-bottom: 30px;
+
+}
+
+</style>
+
+</head>
+	<body>
+		<article>
+			<div class="container" role="main">
+				<h1>BoardDetail</h1>
+					<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
+	
+					<div class="mb-3">
+						<label for="boardNo">No</label>
+						<th:input th:text="${list.boardNo}" type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" >
+					</div>
+	
+					<div class="mb-3">
+						<label for="boardTitle">제목</label>
+						<th:input th:text="${list.boardTitle}" type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요">
+					</div>
+	
+					<div class="mb-3">
+						<label for="content">내용</label>
+						<textarea th:text="${list.boardContent}" class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" readonly></textarea>
+					</div>
+	
+					<div class="mb-3">
+						<label for="boardUser">작성자</label>
+						<th:input th:text="${list.boardUser}" type="text" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요">
+					</div>
+					
+					<div class="mb-3">
+						<label for="boardDate">일자</label>
+						<th:input th:text="${list.boardDate}" type="text" class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요">
+					</div>
+	
+						<a th:href="@{/modifyBoard(boardNo=${list.boardNo}, currentPage=${currentPage})}">수정</a>
+						<a th:href="@{/removeBoard(boardNo=${list.boardNo}, currentPage=${currentPage})}">삭제</a>
+						<a th:href="@{/boardList(currentPage=${currentPage})}">리스트로 돌아가기</a>
+					</form>
+			</div>
+		</article>
+	</body>
+</html> 

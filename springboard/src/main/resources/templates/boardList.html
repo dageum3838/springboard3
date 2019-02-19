@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>전체 화면</title>
+<meta charset="UTF-8">
+
+<!-- jQuery -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<!--  부트스트랩을 다운로드 받지 않고 CDN 방식을 이용함 -->
+<!-- Bootstrap CSS -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<title>글 리스트</title>
+<!-- 너무 상단에 붙어 있으므로 조금 떨어 트리기 위해  -->
+<style>
+
+body {
+
+padding-top: 70px;
+
+padding-bottom: 30px;
+
+}
+
+</style>
+<script>
+	$(document).on('click', '#btnWriteForm', function(e){
+		e.preventDefault();
+		location.href = "${pageContext.request.contextPath}/board/boardForm";
+	});
+</script>
+
+
+</head>
+<body>
+	<article>
+		<div class="container">
+			<div class="table-responsive">
+				<h1>BoardList</h1>
+					<table class="table table-striped table-sm">
+						<colgroup>
+				
+							<col style="width:5%;" />
+				
+							<col style="width:auto;" />
+				
+							<col style="width:15%;" />
+				
+							<col style="width:10%;" />
+				
+							<col style="width:10%;" />
+	
+						</colgroup>
+						<thead>
+							<tr>
+								<td>No</td>
+								<td>제목</td>
+								<td>작성자</td>
+								<td>일자</td>
+							</tr>
+						</thead>
+							<tr th:each="list : ${map.list}">
+								<td th:text="${list.boardNo}"></td>
+								<td>
+									<a th:href="@{/boardDetail(boardNo = ${list.boardNo}, currentPage=${currentPage})}">
+									<th:block th:text="${list.boardTitle}"></th:block>
+									</a>
+								</td>
+								<td th:text="${list.boardUser}"></td>
+								<td th:text="${list.boardDate}"></td>
+							</tr>
+					</table>
+	<a th:href="@{/boardList}">처음</a>
+		<span th:if="${currentPage <= 1 }" >
+			이전
+		</span>
+		
+		<span th:unless="${currentPage <= 1 }" >
+			<a th:href="@{/boardList(currentPage = ${currentPage - 1})}">이전</a>
+		</span>
+		
+		<span th:if="${currentPage >= map.lastPage}" >
+			다음
+		</span>
+		
+		<span th:unless="${currentPage >= map.lastPage}" >
+			<a th:href="@{/boardList(currentPage = ${currentPage + 1})}">다음</a>
+		</span>
+		
+			<a th:href="@{/boardList(currentPage = ${map.lastPage})}">마지막</a>
+			<br>
+			<a th:href="@{/addBoard}">글 작성</a>
+		</div>
+	</div>
+</article>
+</body>
+</html> 

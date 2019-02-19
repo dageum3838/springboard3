@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="cafe.ebsteam.springboard.mapper.BoardMapper">
+  		<select id="selectBoard" 
+  			parameterType="int"
+  			resultType="cafe.ebsteam.springboard.vo.Board">
+  			SELECT 
+  				board_no as boardNo,
+  				board_pw as boardPw, 
+  				board_title as boardTitle, 
+  				board_content as boardContent, 
+  				board_user as boardUser, 
+  				board_date as boardDate 
+  			FROM board 
+  			WHERE board_no=#{sampleNo}
+  		</select>
+
+  		<select id="selectBoardList"
+  			parameterType="java.util.Map"
+  			resultType="cafe.ebsteam.springboard.vo.Board">
+  			SELECT
+  				board_no as boardNo,
+  				board_pw as boardPw,
+  				board_title as boardTitle,
+  				board_user as boardUser,
+  				board_date as boardDate
+  			FROM board
+  			ORDER BY board_date DESC
+  			LIMIT #{currentPage}, #{rowPerPage}
+  		</select>
+  	
+  		<select id="selectboardCount"
+  				resultType="int">
+  			SELECT COUNT(*) FROM board
+  				
+  		</select>
+  	
+  		<insert id="insertBoard"
+  				parameterType="cafe.ebsteam.springboard.vo.Board">
+  			INSERT INTO board(
+  				board_pw, 
+  				board_title, 
+  				board_content, 
+  				board_user, 
+  				board_date
+  				) VALUES(
+  				#{boardPw},
+  				#{boardTitle},
+  				#{boardContent},
+  				#{boardUser},
+  				now()
+  				)
+  		</insert>
+  		<delete id="deleteBoard"
+  				parameterType="cafe.ebsteam.springboard.vo.Board">
+  			DELETE FROM board WHERE board_no=#{boardNo} AND board_pw=#{boardPw}
+  		</delete>
+  		<update id="updateBoard"
+  				parameterType="cafe.ebsteam.springboard.vo.Board">
+  			UPDATE board 
+			SET 
+				board_title=#{boardTitle}, 
+				board_content=#{boardContent}, 
+				board_user=#{boardUser}, 
+				board_date=#{boardDate} 
+			WHERE board_no = #{boardNo}
+			</update>
+  </mapper>
