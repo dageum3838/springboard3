@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org" >
 <head>
-<title>글 삭제 화면</title>
+<title>삭제 화면</title>
 <meta charset="UTF-8">
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -17,7 +17,7 @@
 </style>
 
 <script>
-		console.log("글 삭제 화면");
+		console.log("삭제 화면");
 		// 유효성 검사 완료
 		$(document).ready(function(){
 	        $('#submit').click(function(){
@@ -33,10 +33,9 @@
 	</script>
 </head>
 <body>
-	<div class="container" role="main">
+	<div class="container form-group">
 	<h1>RemoveBoard</h1>
 		<form action="/removeBoard" id="removeBoard" method="post">
-		<table border="1">
 			<tr th:each="b : ${board}">
 				<div class="mb-3">
 					<label for="boardNo">No</label>
@@ -52,7 +51,7 @@
 					<input id="submit" type="submit" value="삭제하기">
 				</td>
 			</tr>	
-		</table>
 	</form>
-</body>
-</html>
+<br>
+<a th:href="@{/boardList(currentPage=${currentPage})}">리스트로 돌아가기</a>
+
